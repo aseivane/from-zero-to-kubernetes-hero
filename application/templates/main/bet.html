@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+    <p>
+        <h2 style="display:inline-block;">Apuestas</h2>
+        <button onclick="help()" style="display:inline-block;float: right;" type="button" class="btn btn-outline-primary">
+            Ayuda 
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"></path>
+                <circle cx="8" cy="4.5" r="1"></circle>
+            </svg>
+        </button>
+    </p>
+
+    {% if table %}
+    <h3>Próxima ronda: semana {{ table[0].round }}</h3>
+    <form method="POST" action="" novalidate>
+        <table class="table table-sm">
+            <thead style="text-align: center;">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Local</th>
+                    <th></th>
+                    <th>Goles (L)</th>
+                    <th>Goles (V)</th>
+                    <th></th>
+                    <th>Visitante</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if form != False %}
+                    {{ form.hidden_tag() }}
+                {% endif %}
+
+                {% for row in range(10) %}
+                    <tr>
+                        <td style="text-align: center;">{{ table[row].date }}</td>
+                        <td style="text-align:right;">{{ table[row].homeTeam }}</td>
+                        <td>
+                            <img src={{ table[row].homelogo }} alt="Lamp" width="32" height="32">
+                        </td>
+
+                        {% if form != False %}
+                            {% if value %}
+                            <td style="text-align: center;">{{ form.bet[row].home(value=value[row].home, size=2) }}</td>
+                            <td style="text-align: center;">{{ form.bet[row].away(value=value[row].away, size=2) }}</td>
+                            {% else %}
+                            <td style="text-align: center;">{{ form.bet[row].home(value='-', size=2) }}</td>
+                            <td style="text-align: center;">{{ form.bet[row].away(value='-', size=2) }}</td>
+                            {% endif %}
+                        {% else %}
+                            <td>Cerrado</td>
+                            <td>Cerrado</td>
+                        {% endif %}
+                        <td>
+                            <img src={{ table[row].awaylogo }} alt="Lamp" width="32" height="32">
+                        </td>
+                        <td>{{ table[row].awayTeam }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            {% if form != False %}
+                <button class="btn btn-secondary btn-lg">Bet</button>
+            {% if form.bet.errors is defined %}
+                <div style="margin-top: 10px;"><span style="color: red;">{{ form.bet.errors[-1] }}</span></div>
+            {% endif %}
+                </form>
+            {% else %}
+                <td>Las apuestas ya se han cerrado</td>
+            {% endif %}
+        </div>
+    </form>
+    {% elif table == False %}
+    <h4>Conexión con API no responde</h4>
+    <p>Por favor volver a intentar en breve</p>
+    {% else %}
+    <h4>Ya no quedan partidos</h4>
+    <p>Aguardar al fixture de la próxima temporada</p>
+    {% endif %}
+
+
+    <script>
+        function help()
+        {
+            alert("Es obligatorio completar TODOS los campos con números enteros positivos.");
+        }
+    </script>
+{% endblock %}
