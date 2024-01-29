@@ -2,7 +2,7 @@
 
 ## Prode
 
-<img src="./img/Boleta_Prode.jpg" alt="prode" width="460"/>
+![](./img/Boleta_Prode.jpg) 
 
 _"Pronósticos Deportivos"_ or _"PRODE"_ was a traditional bet game created by Argentina's national lottery agency ("Lotería Nacional") in 1972. Being just a board printed on paper, the player would bet, with a simple cross made inside a cell, the upcoming results of the week's local football tournament. The following development pays tribute to such a popular tradition, discontinued in 2018.
 
