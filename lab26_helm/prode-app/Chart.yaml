@@ -1,6 +1,6 @@
 apiVersion: v2
-name: nginx-netrix
-description: A Helm chart for Kubernetes
+name: prode-app
+description: A Helm chart for Prode application
 
 type: application
 

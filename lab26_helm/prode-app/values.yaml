@@ -1,0 +1,9 @@
+namespace: via-helm
+
+deployment:
+  name: <complete this!>
+
+labels:
+  company: <complete this!>
+  owner: <complete this!>
+  tier: <complete this!>
