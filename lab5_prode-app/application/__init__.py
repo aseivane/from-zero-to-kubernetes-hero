@@ -81,7 +81,7 @@ def create_app(config_class=Config):
             app.logger.addHandler(file_handler)
 
             app.logger.setLevel(logging.INFO)
-            app.logger.info('Arranque de Futbolero')
+            app.logger.info('Football betting - Prode Start')
 
         return app
 

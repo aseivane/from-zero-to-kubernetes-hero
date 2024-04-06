@@ -2,9 +2,9 @@
 
 {% block content %}
     <p>
-        <h2 style="display:inline-block;">Puntos</h2>
+        <h2 style="display:inline-block;">Score</h2>
         <button onclick="help()" style="display:inline-block;float: right;" type="button" class="btn btn-outline-primary">
-            Ayuda 
+            Help 
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
@@ -22,10 +22,10 @@
         {% if total == 'closed' %}
             <p>Fecha cerrada</p>
         {% elif total == 'no_bets' %}
-            <p>No hubo apuestas para la semana {{ table[0].round }}</p>
+            <p>No bets for week {{ table[0].round }}</p>
         {% else %}
             <div>
-                <h3>Semana {{ table[0].round }}</h3>
+                <h3>Week {{ table[0].round }}</h3>
                 <small>Terminada</small>
             </div>
             <table class="table table-sm">
@@ -34,13 +34,13 @@
                         <th>Fecha</th>
                         <th>Local</th>
                         <th></th>
-                        <th>Goles (L)</th>
+                        <th>Goals (L)</th>
                         <th>Apuesta</th>
                         <th>Visitante</th>
                         <th></th>
-                        <th>Goles (V)</th>
+                        <th>Goals (V)</th>
                         <th>Apuesta</th>
-                        <th>Puntos</th>
+                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>    
@@ -93,7 +93,7 @@
     <script>
         function help()
         {
-            alert("Regla de puntuación:\n\nGoles exactos: 6 puntos\nCoincide resultado: 3 puntos");
+            alert("Regla de puntuación:\n\nGoals exactos: 6 puntos\nCoincide resultado: 3 puntos");
         }
     </script>
 {% endblock %}

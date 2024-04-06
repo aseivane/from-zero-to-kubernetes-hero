@@ -11,14 +11,14 @@
                     <td><img src="{{ user.avatar(128) }}"></td>
                     {% endif %}
                     <td>
-                        <h1 style="margin-left: 20px;">Usuario: {{ user.username }}</h1>
+                        <h1 style="margin-left: 20px;">User: {{ user.username }}</h1>
                         {% if user.fav_squad %}
                             <p style="margin-left: 20px;">Soy fan del <b>{{ user.fav_squad }}</b>
                             <img src={{ logo }} width="32" height="32" style="margin-left: 20px;">
                             </p>
                         {% endif %}
                         {% if user.last_seen %}
-                            <p style="margin-left: 20px;">Última conexión: {{ moment(user.last_seen).format('LLL') }}</p>
+                            <p style="margin-left: 20px;">Last connection: {{ moment(user.last_seen).format('LLL') }}</p>
                         {% endif %}
                     </td>
                 </tr>
@@ -32,18 +32,18 @@
             <button type="submit" name="button" value="PL">Premier League</button>
         </form>
 
-        <h3 style="margin-top: 10px; margin-bottom: 10px">Ranking de usuarios</h3>
+        <h3 style="margin-top: 10px; margin-bottom: 10px">Users ranking</h3>
 
 
 
         {% if ranking %}
             <table class='table table-striped' style='line-height: 14px; text-align:center;'>
                 <thead>
-                    <tr>Temporada {{ current_season }} {{ league }}</tr>
+                    <tr>Season {{ current_season }} {{ league }}</tr>
                     <tr>
                         <td>Ranking</td>
                         <td>Nombre</td>
-                        <td>Puntos</td>
+                        <td>Score</td>
                         <td>Hits</td>
                     </tr>
                 </thead>
@@ -59,7 +59,7 @@
                 </body>
             </table>
         {% else %}
-        <p>Todavía no hay puntos</p>
+        <p>No points yet</p>
         {% endif %}
         </div>
         <div class="col-sm-7">

@@ -22,7 +22,9 @@ class Config():
     PSQL_DB_NAME = os.environ.get('PSQL_DB_NAME')
     PSQL_HOST_DB = os.environ.get('PSQL_HOST_DB')
 
+    # docker desktop users: database host = localhost
     SQLALCHEMY_DATABASE_URI = f"postgresql://{PSQL_USER}:{PSQL_PASS}@{PSQL_HOST_DB}:5432/{PSQL_DB_NAME}"
+
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -31,6 +33,7 @@ class Config():
     SESSION_USE_SIGNER = True
     SESSION_TYPE = 'redis'
 
+    # docker desktop users: cache host = localhost
     REDIS_HOST = os.environ.get('REDIS_HOST')
 
     SESSION_REDIS = redis.Redis(

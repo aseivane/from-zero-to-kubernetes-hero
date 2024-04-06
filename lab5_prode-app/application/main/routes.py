@@ -54,18 +54,18 @@ def index():
             for key, value in session.get('leagues').items():
                 session[f'{value}'] = connect.fixture(value, session['season'])
                 session[f'tabla_{value}'], session[f'logos_{value}'] = connect.standings(value, session['season'])
-            
             session['fixture'] = session.get(value)
             tabla = session[f'tabla_{value}']
         except:
             session['fixture'] = None
 
     if request.method == 'POST':
+
         for key, value in session.get('leagues').items():
             if value == request.form.get('button', 'PL'):
                 session['league']  = value
                 session['fixture'] = session[session['league']]
-    
+
     tabla = session[f"tabla_{session['league']}"]
 
     # if connextion succesfull
@@ -163,7 +163,7 @@ def index():
     posts = Post.query.order_by(Post.timestamp.desc()).limit(5).all()
 
     return render_template("main/index.html", 
-        title='Bienvenido', 
+        title='Welcome', 
         table=tabla, 
         fixture=current_round,
         postponed = remaining,
@@ -376,7 +376,7 @@ def edit_profile():
 
     return render_template(
         'main/edit_profile.html',
-        title='Editar Perfil',
+        title='Edit Profile',
         form=form,
         leagues = leagues,
         teams = teams,
@@ -397,12 +397,14 @@ def bet():
         # make list of matches in bets
         bet_matches = Bets.query.filter_by(user_id=current_user.id).all()
         bet_list = [int(str(bet)) for bet in bet_matches]
-        
+
         # get matches of next round, if None there are no more matches left
         next_round_matches = [matches for matches in session['fixture'] if matches['round'] == helpers.up_rounds(session['fixture']) + 1]
+        total_matches = len(next_round_matches)
 
         # make a list to pass as value attribute of each field
         attributes = []
+
         for match in next_round_matches:
             if match['matchID'] in bet_list:
                 for bet in bet_matches:
@@ -421,7 +423,7 @@ def bet():
                         season = session['season'],
                         league = session['league'],
                         match_id=match['matchID'],
-                        timestamp = datetime.utcnow(),
+                        timestamp = datetime.now(datetime.UTC),
                         score_home = value['home'],
                         score_away = value['away']
                     )
@@ -432,7 +434,7 @@ def bet():
                     if match['matchID'] in bet_list:
                         for bet in bet_matches:
                             if int(str(bet.match_id)) == match['matchID']:
-                                bet.timestamp = datetime.utcnow()
+                                bet.timestamp = datetime.now(datetime.UTC)
                                 bet.score_home = value['home']
                                 bet.score_away = value['away']
                                 bet.season = session['season']
@@ -444,7 +446,7 @@ def bet():
                             season = session['season'],
                             league = session['league'],
                             match_id=match['matchID'],
-                            timestamp = datetime.utcnow(),
+                            timestamp = datetime.now(datetime.UTC),
                             score_home = value['home'],
                             score_away = value['away']
                         )
@@ -454,10 +456,11 @@ def bet():
             return redirect(url_for('bet'))
 
     return render_template("main/bet.html", 
-        title ='Apostar', 
+        title ='Bet', 
         table = next_round_matches, 
         form = form, 
-        value = attributes
+        value = attributes,
+        total_matches = total_matches
     )
 
 @bp.route('/results', methods=['GET', 'POST'])
@@ -521,7 +524,7 @@ def results():
             total = 'closed'
         
     return render_template("main/results.html",
-        title='Puntos',
+        title='Score',
         table=current_round_matches,
         total=total
     )

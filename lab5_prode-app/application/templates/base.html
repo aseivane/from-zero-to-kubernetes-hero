@@ -2,9 +2,9 @@
 <html lang="es">
     <head>
         {% if title %}
-            <title>{{ title }} - Futbolero</title>
+            <title>{{ title }} - Football betting - Prode</title>
         {% else %}
-            <title>Bienvenido a Futbolero</title>
+            <title>Welcome to Football betting - Prode</title>
         {% endif %}
         {{ moment.include_jquery() }}
         {{ moment.include_moment() }}
@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-md navbar-dark primary-color" style="background-color: #67b8f1;">
             <a class="navbar-brand abs">
                 <img src="/static/logo.png" width="30" height="30" class="d-inline-block align-top" loading="lazy">
-                <span class="blue"><b>FUTBOLERO</b></span>
+                <span class="blue"><b>Football betting</b></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.index') }}">Inicio</a>
+                        <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                     </li>
                 {% if current_user.is_anonymous %}
                     </ul>
@@ -52,15 +52,15 @@
                             </li>
                         </ul>
                 {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.bet') }}">Apostar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.results') }}">Puntos</a></li>                    
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.bet') }}">Bet</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.results') }}">Score</a></li>                    
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         {% if user == current_user %}
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('main.edit_profile') }}">Editar perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('main.history', username=current_user.username) }}">Historial</a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.user', username=current_user.username) }}">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('main.debate') }}">Debate</a></li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('auth.logout') }}">
@@ -88,7 +88,7 @@
         {% block content %}{% endblock %}
         </main>
         <footer class="small text-center text-muted" style="margin-bottom: 40px;">
-            Información provista por <a href="https://www.football-data.org/">football-data.org</a>. <a href="https://www.football-data.org/about">Términos y condiciones</a>.
+            Information provided by <a href="https://www.football-data.org/">football-data.org</a>. <a href="https://www.football-data.org/about">Terms and Conditions</a>.
         </footer>
     </body>
 </html>

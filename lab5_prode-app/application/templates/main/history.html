@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 
 {% block content %}
-    <h2>Registro de apuestas y puntos</h2>
+    <h2>Scores and bets registry</h2>
     {% if fixture %}
         {% if history %}
             <table class='table table-striped' style="margin-top:20px; text-align: center; line-height: 14px;">
@@ -9,13 +9,13 @@
                     <tr>
                         <th>Fecha</th>
                         <th>Local</th>
-                        <th>Goles<br>Local</th>
+                        <th>Goals<br>Local</th>
                         <th>Apuesta<br>Local</th>
                         <th>Visitante</th>
-                        <th>Goles<br>Visitante</th>
+                        <th>Goals<br>Visitante</th>
                         <th>Apuesta<br>Visitante</th>
-                        <th>Puntos</th>
-                        <th>Temporada</th>
+                        <th>Score</th>
+                        <th>Season</th>
                     </tr>
                 </thead>
                 <tbody>    
@@ -41,7 +41,7 @@
             <a href="{{ next_url }}">More</a>
             {% endif %}
         {% else %}
-            <p>No se han cargado apuestas</p>
+            <p>No bets have been loaded</p>
         {% endif %}
     {% else %}
     <h4>Conexión con API no responde</h4>

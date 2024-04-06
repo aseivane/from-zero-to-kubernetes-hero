@@ -84,8 +84,8 @@ def notify(username, user_points, email):
 
         smtp.login(adm_mail, adm_pass)
 
-        subject='USUARIO CAMPEON - PERMIER LEAGUE 2020-2021 - FUTBOLERO'
-        body = f'Estimado/a {username},\n\nHa ganado el campeonato de apuestas con {user_points} puntos. Nos estaremos comunicando a la brevedad para coordinar la entrega de un premio sorpresa.\n\nSaluda atte.\n\nFUTBOLERO - PRODE'
+        subject='USUARIO CAMPEON - PERMIER LEAGUE 2020-2021 - Football betting'
+        body = f'Estimado/a {username},\n\nHa ganado el campeonato de apuestas con {user_points} puntos. Nos estaremos comunicando a la brevedad para coordinar la entrega de un premio sorpresa.\n\nSaluda atte.\n\nFootball betting - PRODE'
         msg = f'{subject}\n\n{body}'
 
         smtp.sendmail(adm_mail, f"{email}", msg)
