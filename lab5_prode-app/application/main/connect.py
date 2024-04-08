@@ -53,7 +53,7 @@ def fixture(league, season):
             'homeTeam': match['homeTeam']['name'],
             'awayTeamID': match['awayTeam']['id'],
             'awayTeam': match['awayTeam']['name'],
-            'score': [match['score']['fullTime']['homeTeam'],match['score']['fullTime']['awayTeam']]})
+            'score': [match['score']['fullTime']['home'],match['score']['fullTime']['away']]})
         return matches
     except (KeyError, TypeError, ValueError):
         return None
