@@ -1,0 +1,29 @@
+NAME                                              READY   STATUS    RESTARTS        AGE
+pod/calico-kube-controllers-558d465845-d26vn      1/1     Running   1 (7h57m ago)   7h59m
+pod/calico-node-hdzpp                             1/1     Running   0               7h59m
+pod/calico-node-pkrss                             1/1     Running   0               7h59m
+pod/calico-node-wgzwd                             1/1     Running   0               7h59m
+pod/coredns-5dd5756b68-nftmw                      1/1     Running   5 (7h57m ago)   7h59m
+pod/etcd-netrix-k8s-workshop                      1/1     Running   0               7h59m
+pod/kube-apiserver-netrix-k8s-workshop            1/1     Running   0               7h59m
+pod/kube-controller-manager-netrix-k8s-workshop   1/1     Running   0               7h59m
+pod/kube-proxy-2w97d                              1/1     Running   0               7h59m
+pod/kube-proxy-l9jns                              1/1     Running   0               7h59m
+pod/kube-proxy-sp7wv                              1/1     Running   0               7h59m
+pod/kube-scheduler-netrix-k8s-workshop            1/1     Running   0               7h59m
+pod/storage-provisioner                           1/1     Running   1 (7h58m ago)   7h59m
+
+NAME               TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+service/kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   7h59m
+
+NAME                         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+daemonset.apps/calico-node   3         3         3       3            3           kubernetes.io/os=linux   7h59m
+daemonset.apps/kube-proxy    3         3         3       3            3           kubernetes.io/os=linux   7h59m
+
+NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/calico-kube-controllers   1/1     1            1           7h59m
+deployment.apps/coredns                   1/1     1            1           7h59m
+
+NAME                                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/calico-kube-controllers-558d465845   1         1         1       7h59m
+replicaset.apps/coredns-5dd5756b68                   1         1         1       7h59m
