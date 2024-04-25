@@ -34,3 +34,34 @@ connection to server at "localhost" (::1), port 5432 failed: Connection refused
 [2024-04-24 22:48:12 -0300] [37145] [INFO] Shutting down: Master
 [2024-04-24 22:48:12 -0300] [37145] [INFO] Reason: Worker failed to boot.
 ```
+
+# Deploy databases in docker
+
+```console
+$ docker run --name postgres -p 5432:5432 -e POSTGRES_USER=sql-user -e POSTGRES_PASSWORD=sql-password -d postgres
+
+$ docker run --name redis -p 6379:6379 -d redis redis-server --save 60 1 
+```
+
+# Get API key
+
+To get access to the leages information the app has to connect to the API. And to do so, it needs an **API key** for credentials. Access [here](https://www.football-data.org/client/register) and get an API key. Add that key as a variable in the `.env_docker` file `API_KEY="yourkey"`.
+
+# Run the application
+```console
+$ ./run.sh 
+[2024-04-24 23:35:43 -0300] [38603] [INFO] Starting gunicorn 20.1.0
+[2024-04-24 23:35:43 -0300] [38603] [INFO] Listening at: http://0.0.0.0:5000 (38603)
+[2024-04-24 23:35:43 -0300] [38603] [INFO] Using worker: sync
+[2024-04-24 23:35:43 -0300] [38626] [INFO] Booting worker with pid: 38626
+FIXTURE <Response [200]>
+STANDINGS <Response [200]>
+FIXTURE <Response [200]>
+STANDINGS <Response [200]>
+FIXTURE <Response [200]>
+STANDINGS <Response [200]>
+FIXTURE <Response [200]>
+STANDINGS <Response [200]>
+FIXTURE <Response [200]>
+STANDINGS <Response [200]>
+```
