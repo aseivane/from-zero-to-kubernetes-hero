@@ -9,8 +9,16 @@ First install pyenv as explained [here](https://github.com/pyenv/pyenv#installat
 $ pyenv virtualenv 3.9.16 aseivane-k8s-workshop
 $ pyenv activate aseivane-k8s-workshop
 ```
+**Start virtual environment**
+```console
+$ pyenv activate aseivane-k8s-workshop
+```
+**Stop virtual environment**
+```console
+$ pyenv deactivate
+```
 
-Add execution rights to the `run.sh`file.
+Add execution rights to the `run.sh`file. Execute this everytime you want to start the web app.
 ```console
 $ chmod +x run.sh
 ```
