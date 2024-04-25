@@ -1,42 +1,36 @@
-# Training app
+# Run the app locally
 
-## Prode
+Before mrunning the app inside a container or mutiple ones, I'll run the app standalone. Since the app is based on *flask*, I'm running the app in an isolated environment using pipenv, but the databases run in docker containers to skip installing extra software and ease of configuration.
 
-![](./img/Boleta_Prode.jpg) 
+# Configure environment
+First install pyenv as explained [here](https://github.com/pyenv/pyenv#installation).
 
-_"Pronósticos Deportivos"_ or _"PRODE"_ was a traditional bet game created by Argentina's national lottery agency ("Lotería Nacional") in 1972. Being just a board printed on paper, the player would bet, with a simple cross made inside a cell, the upcoming results of the week's local football tournament. The following development pays tribute to such a popular tradition, discontinued in 2018.
+```console
+$ pyenv virtualenv 3.9.16 aseivane-k8s-workshop
+$ pyenv activate aseivane-k8s-workshop
+```
 
-**Prode** is a forecasting game based on python and flask, which rewards users who guess the most match scores. The app compares the user's expected outcomes for each round against the latest results in the current seasons of European football leagues and makes a ranking with the sum of the points obtained by each player.
+Add execution rights to the `run.sh`file.
+```console
+$ chmod +x run.sh
+```
 
-## Traning
+# Define environment variables
 
-Basic app architecture 
+`config.py`file looks for environmet variables for the application to work. The statement `load_dotenv(os.path.join(env_dir, '.env_docker'))` looks for environment variables in the file `.env_docker`. For ease of management, I'm defining the needed variables in that file.
 
-![](./img/arch.png) 
+At this point, the web app has everything configured but it can't connect to the databases.
 
-This application will be used throughout the docker and Kubernetes onboarding process as a starting point for testing and troubleshooting app migration to containers and orchestrators. Feel free to experiment with changing the app, running it locally, in docker containers, inside a Kubernetes deployment, etc. There is room for improvement here!
+```console
+  File "/Users/aseivane/.pyenv/versions/aseivane-k8s-workshop/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+        Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Connection refused
+        Is the server running on that host and accepting TCP/IP connections?
 
-If you are following the onboarding process, its recommended to follow the proposed exercises listed below and review the story steps listed in [k8s-onboarding](https://www.football-data.org/) 
-
-### 1. Run the application locally (optional)
-
-Objective: Get familiar with package management strategies in Python with pip and leverage working simultaneously with several projects with venv.
-Like npm in javascript, composer in PHP, or RubyGems in ruby, learning to use package managers is crucial to allow an application to run anywhere, despite the runtime environment or platform used.
-
-### 2. Run the application in docker
-
-Objective: Get familiar with docker commands. How do we build a docker image? What is a Dockerfile? How do we run a container and connect it with other running containers? How can I troubleshoot issues in docker?
-
-### 3. Run the application in docker-compose
-
-Objective: Getting to know docker-compose. Why do we have to execute many docker commands to deploy an application? Can we definite all running parameters and requisites in just one YAML file?
-
-### 4. Run the application in Kubernetes
-
-Objective: Connect the docker world with Kubernetes objects like pods, replicasets, and deployments. Get familiar with kubectl common commands, Kubernetes manifests, troubleshooting basics, and understand the need for Kubernetes. How can we scale the application to satisfy user requests? 
-
-### 4. Leverage Kubernetes features
-
-Objective: How can we leverage the power of the cloud regarding storage, computing, security, and networking?
-
-***Thanks to [Guido](https://github.com/guidomitolo) and [football-data](https://www.football-data.org/)***
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+[2024-04-24 22:48:12 -0300] [37168] [INFO] Worker exiting (pid: 37168)
+[2024-04-24 22:48:12 -0300] [37145] [INFO] Shutting down: Master
+[2024-04-24 22:48:12 -0300] [37145] [INFO] Reason: Worker failed to boot.
+```
