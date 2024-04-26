@@ -40,7 +40,7 @@ Now that everything is configured, these are the commands to run the containers:
 ```console
 $ docker run --name postgres -h postgres --net workshop -e POSTGRES_USER=sql-user -e POSTGRES_PASSWORD=sql-password  -d postgres
 
-$ docker run --name redis -h redis --net workshop -d redis  --save 60 1 
+$ docker run --name redis -h redis --net workshop -d redis redis-server --save 60 1 
 
 $ docker run --name web -p 80:5000 --net workshop  prode
 ```
