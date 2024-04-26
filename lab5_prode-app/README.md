@@ -27,6 +27,17 @@ $ chmod +x run.sh
 
 `config.py`file looks for environmet variables for the application to work. The statement `load_dotenv(os.path.join(env_dir, '.env_docker'))` looks for environment variables in the file `.env_docker`. For ease of management, I'm defining the needed variables in that file.
 
+```
+FLASK_ENV="development"
+PSQL_PASS="sql-password"
+PSQL_USER="sql-user"
+PSQL_DB_NAME="postgres"
+PSQL_HOST_DB="localhost"
+REDIS_HOST="localhost"
+ADM_MAIL="admin"
+ADM_PASS="admin"
+```
+
 At this point, the web app has everything configured but it can't connect to the databases.
 
 ```console

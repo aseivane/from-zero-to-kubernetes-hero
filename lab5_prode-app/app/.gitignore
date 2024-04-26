@@ -40,4 +40,4 @@ database.db
 connection.py
 .vscode
 .env
-.api_key
+.env_docker
