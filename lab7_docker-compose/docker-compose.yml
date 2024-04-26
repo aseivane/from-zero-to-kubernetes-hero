@@ -1,3 +1,5 @@
+name: asivane-k8s-korkshop
+
 services:
   web:
     container_name: web
