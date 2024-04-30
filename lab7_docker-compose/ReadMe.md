@@ -58,3 +58,8 @@ Before running the containers, delete all the containers already created. Now, r
 ```console
 $ docker compose -f docker-compose.yml up -d  
 ```
+
+To stop containers, run the following command:
+```console
+$ docker compose -f docker-compose.yml down
+```
