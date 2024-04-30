@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2024-04-30T14:14:29Z"
+  labels:
+    kubernetes.io/metadata.name: workshop-lab8-namespaces
+  name: workshop-lab8-namespaces
+  resourceVersion: "4047"
+  uid: 9d118903-6ff6-48aa-9979-ab211f88e5c1
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
