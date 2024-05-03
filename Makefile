@@ -3,4 +3,4 @@ start-workshop:
 
 stop-workshop:
 	 minikube stop -p netrix-k8s-workshop
-	 docker rm -f -v $$(docker ps -q -a --filter "name=workshop*") 2> /dev/null
+	 minikube delete -p netrix-k8s-workshop
